@@ -13,8 +13,9 @@ div.addEventListener("click", (e) => {
         if (container.lastElementChild.classList[0] !== "copied") {
             const span = document.createElement("span");
             span.innerText = "Copied";
+            span.classList.add("copied");
             setTimeout(() => {
-                span.classList.add("copied");
+                span.style.backgroundColor = "black";
             }, 0);
             container.appendChild(span);
         }
@@ -61,7 +62,6 @@ boxes.forEach((box) => {
     box.addEventListener("click", (e) => {
         const input = box.firstElementChild.firstElementChild;
         if (e.target !== input) {
-            console.log(e.target.innerText, box, e, input);
             body.style.backgroundColor = box.innerText;
         }
     });
@@ -70,7 +70,6 @@ boxes.forEach((box) => {
 forms.forEach((form) => {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        console.log(form.parentElement);
         let boxSpan = form.parentElement.lastElementChild;
         boxSpan.innerText = form.firstElementChild.value;
         let box = form.parentElement;
@@ -89,7 +88,6 @@ forms.forEach((form) => {
 
     form.addEventListener("contextmenu", (e) => {
         e.preventDefault();
-
         navigator.clipboard.readText().then((text) => {
             form.firstElementChild.value = text;
         });

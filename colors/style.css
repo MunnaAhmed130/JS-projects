@@ -71,11 +71,11 @@ body {
 }
 
 .copied {
-    background-color: black;
+    /* background-color: black; */
     color: white;
     border-radius: 5px;
     padding: 0.5rem;
-    transition: 100ms;
+    transition: 200ms;
     position: absolute;
     top: 5px;
     right: 10rem;
