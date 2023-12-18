@@ -53,6 +53,7 @@ function generate() {
 
 const boxes = document.querySelectorAll(".box");
 const forms = document.querySelectorAll("form");
+// const input = document.querySelectorAll("input");
 const body = document.body;
 
 boxes.forEach((box) => {
@@ -67,23 +68,25 @@ boxes.forEach((box) => {
 });
 
 forms.forEach((form) => {
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log(form.parentElement);
+        let boxSpan = form.parentElement.lastElementChild;
+        boxSpan.innerText = form.firstElementChild.value;
+        let box = form.parentElement;
+        box.style.backgroundColor = box.innerText;
+    });
+
     form.addEventListener("click", (e) => {
         e.preventDefault();
-        if (
-            e.target.value.length &&
-            e.target.value.match(/^#[a-fA-F0-9]{6}$/)
-        ) {
-            const elem = form.parentElement.children;
-            elem[elem.length - 1].innerText = form.children[0].value;
-            // console.log(typeof e.target.value, e.target.value.length);
-            boxes.forEach((box) => {
-                box.style.backgroundColor = box.innerText;
-            });
+        if (e.target.value.match(/^#[a-fA-F0-9]{6}$/)) {
+            let boxSpan = form.parentElement.lastElementChild;
+            boxSpan.innerText = form.firstElementChild.value;
+            const box = form.parentElement;
+            box.style.backgroundColor = box.innerText;
         }
     });
-});
 
-forms.forEach((form) => {
     form.addEventListener("contextmenu", (e) => {
         e.preventDefault();
 
@@ -92,3 +95,5 @@ forms.forEach((form) => {
         });
     });
 });
+
+// forms.forEach((form) => {});
