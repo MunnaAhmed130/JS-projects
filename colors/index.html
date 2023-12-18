@@ -8,45 +8,76 @@
         <script defer src="app.js"></script>
     </head>
     <body>
-        <!-- Hex color code generator -->
-        <div class="color-generator">
-            <div class="whiteboard"></div>
-            <button class="generator">Generate</button>
-        </div>
+        <section class="main">
+            <!-- Hex color code generator -->
+            <div class="generator-container">
+                <div type="text" class="whiteboard" title="left click to copy">
+                    <span class="placeholder"
+                        >Generate random HEX color code</span
+                    >
+                </div>
+                <button class="generator">Generate</button>
+            </div>
 
-        <!-- color boxes -->
+            <!-- color boxes -->
+            <div class="palette-wrapper">
+                <div class="color-palette">
+                    <div class="box-container">
+                        <div class="box">
+                            <form>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Hex color code"
+                                    pattern="^#[a-fA-F0-9]{6}$"
+                                    title="right click to paste"
+                                    required
+                                />
+                            </form>
+                            <span>#5F8670</span>
+                        </div>
+                        <div class="box">
+                            <form>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Hex color code"
+                                    pattern="^#[a-fA-F0-9]{6}$"
+                                    title="right click to paste"
+                                    required
+                                />
+                            </form>
+                            <span>#FF9800</span>
+                        </div>
+                        <div class="box">
+                            <form>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Hex color code"
+                                    pattern="^#[a-fA-F0-9]{6}$"
+                                    title="right click to paste"
+                                    required
+                                />
+                            </form>
+                            <span>#E7BCDE</span>
+                        </div>
+                        <div class="box">
+                            <form>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Hex color code"
+                                    pattern="^#[a-fA-F0-9]{6}$"
+                                    title="right click to paste"
+                                    required
+                                />
+                            </form>
+                            <span>#67729D</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="box-container">
-            <div class="box">
-                <form>
-                    <input
-                        type="text"
-                        pattern="^#[a-zA-Z0-9]{0,6}$"
-                        id="HEX-color-code"
-                        name="HEX-color-code"
-                        required
-                    />
-                </form>
-                <span>#5F8670</span>
-            </div>
-            <div class="box">
-                <form>
-                    <input type="text" pattern="^#[a-zA-Z0-9]{0,6}$" required />
-                </form>
-                <span>#FF9800</span>
-            </div>
-            <div class="box">
-                <form>
-                    <input type="text" pattern="^#[a-zA-Z0-9]{0,6}$" required />
-                </form>
-                <span>#E7BCDE</span>
-            </div>
-            <div class="box">
-                <form>
-                    <input type="text" pattern="^#[a-zA-Z0-9]{0,6}$" required />
-                </form>
-                <span>#67729D</span>
-            </div>
-        </div>
+        <footer>
+            <p>@ 2023 - Munna Ahmed</p>
+        </footer>
     </body>
 </html>

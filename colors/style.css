@@ -1,64 +1,189 @@
+:root {
+    --square: 11rem;
+    --generate-radius: 2rem;
+    --generator-border: transparent;
+    --light: rgb(50, 91, 121);
+    --dark: rgb(22, 77, 96);
+}
+
 * {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-}
-body {
-    height: 100vh;
-    background-color: #343434;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
 }
 
-.color-generator {
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: #387e94;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+}
+
+/* ------- color generator ---------- */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    gap: 1.5rem;
+    height: 80vh;
+}
+
+.generator-container {
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
+    position: relative;
+    width: 30rem;
+    border-radius: 2rem;
+    box-shadow: 8px 6px 0px 5px rgb(22, 77, 96);
+    overflow: hidden;
+    margin-block: 2rem;
+    margin-inline: auto;
 }
 
 .whiteboard {
-    width: 200px;
-    height: 40px;
+    width: 100%;
+    height: 2.5rem;
     background-color: white;
     display: flex;
     align-items: center;
-    padding-left: 1rem;
+    justify-content: space-between;
+    padding-inline: 1rem;
     cursor: pointer;
+    border: 1px solid var(--generator-border);
+    border-right: none;
+}
+
+.placeholder {
+    color: #676767;
 }
 
 .generator {
-    border: 1px solid black;
-    font-size: 1.15rem;
+    border: 1px solid var(--generator-border);
+    font-size: 1.1rem;
+    background-color: rgb(50, 91, 121);
+    color: white;
     cursor: pointer;
+    padding-right: 1rem;
 }
 
-input {
-    width: calc(100% - 7px);
-    max-width: 200px;
-    font-size: 1.2rem;
+.copied {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: 100ms;
+    position: absolute;
+    top: 5px;
+    right: 10rem;
 }
 
-.box-container {
-    display: flex;
-}
+/* boxes */
 
-.box {
-    width: 10rem;
-    height: 10rem;
-    margin: 1rem;
-    cursor: pointer;
-    text-align: center;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-}
-
-span {
+.palette-wrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+}
+
+.color-palette {
+    position: relative;
+    width: min(80%, 1000px);
+    border-radius: 2rem;
+    display: flex;
+    z-index: 5;
+}
+
+.color-palette::after {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: calc(100% + 2rem);
+    width: calc(100% + 5rem);
+    border-radius: 5rem;
+    background: linear-gradient(
+        180deg,
+        rgb(55, 105, 141) 0%,
+        rgb(21, 84, 109) 100%
+    );
+    z-index: -1;
+}
+.color-palette::before {
+    content: "";
+    position: absolute;
+    top: -0.25rem;
+    left: 2rem;
+    width: 100%;
+    scale: 1.1;
+    height: calc(100% + 1rem);
+    padding-bottom: 2rem;
+    border-radius: 5rem;
+    z-index: -1;
+    background: linear-gradient(
+        180deg,
+        rgb(22, 77, 96) 0%,
+        rgb(22, 77, 96) 80%,
+        rgb(12, 44, 55) 100%
+    );
+}
+
+.box-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    font-weight: 600;
+    border-radius: 40px;
+}
+
+input {
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+input:focus-visible {
+    outline: 0;
+}
+
+input::placeholder {
+    font-size: 1rem;
+}
+
+.box {
+    width: 100%;
+    height: var(--square);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.box span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     letter-spacing: 1px;
-    /* margin-top: 1rem; */
+}
+
+@media only screen and (max-width: 600px) {
+    .color-palette {
+        width: 100%;
+    }
+}
+
+/*  footer  */
+
+footer {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1rem;
 }

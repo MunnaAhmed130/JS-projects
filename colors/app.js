@@ -1,51 +1,44 @@
-const boxes = document.querySelectorAll(".box");
-const forms = document.querySelectorAll("form");
-const body = document.body;
-
-boxes.forEach((box) => {
-    box.style.backgroundColor = box.innerText;
-    box.addEventListener("click", (e) => {
-        if (box.firstElementChild !== e.target) {
-            // console.log(e.target.innerText, box, e);
-            body.style.backgroundColor = box.innerText;
-        }
-    });
-});
-
-// console.log(forms);
-forms.forEach((form) => {
-    // console.log(form);
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        // console.log(form.children[0].value);
-        const elem = form.parentElement.children;
-        elem[elem.length - 1].innerText = form.children[0].value;
-        boxes.forEach((box) => {
-            box.style.backgroundColor = box.innerText;
-        });
-    });
-});
-
-// console.log(box);
-
-const btn = document.querySelector(".generator");
+const generateBtn = document.querySelector(".generator");
 const div = document.querySelector(".whiteboard");
-// console.log(btn);
+const container = document.querySelector(".generator-container");
+const placeholder = document.querySelector(".placeholder");
+
+let hexGenerated = false;
 
 div.addEventListener("click", (e) => {
-    // console.log(e.target.innerText);
-    navigator.clipboard.writeText(e.target.innerText);
-    // e.target.innerText += " copied";
+    console.log(div.children);
+    if (hexGenerated) {
+        navigator.clipboard.writeText(e.target.innerText);
+
+        if (container.lastElementChild.classList[0] !== "copied") {
+            const span = document.createElement("span");
+            span.innerText = "Copied";
+            setTimeout(() => {
+                span.classList.add("copied");
+            }, 0);
+            container.appendChild(span);
+        }
+
+        // console.log(container.lastElementChild.classList[0] == "copied");
+    }
 });
 
-btn.addEventListener("click", () => {
-    div.innerText = generate();
+// generate button
+generateBtn.addEventListener("click", () => {
+    div.removeChild(div.firstElementChild);
+
+    if (container.lastElementChild.classList[0] == "copied") {
+        container.removeChild(container.lastElementChild);
+    }
+
+    const span = document.createElement("span");
+    span.innerText = generate();
+    div.appendChild(span);
+    // console.log(div.children);
+    hexGenerated = true;
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    div.innerText = generate();
-});
-
+// randome hex color code generator
 function generate() {
     const possibleUnits = "ABCDEF1234567890";
     let value = "#";
@@ -58,4 +51,44 @@ function generate() {
     return value;
 }
 
-// generate();
+const boxes = document.querySelectorAll(".box");
+const forms = document.querySelectorAll("form");
+const body = document.body;
+
+boxes.forEach((box) => {
+    box.style.backgroundColor = box.innerText;
+    box.addEventListener("click", (e) => {
+        const input = box.firstElementChild.firstElementChild;
+        if (e.target !== input) {
+            console.log(e.target.innerText, box, e, input);
+            body.style.backgroundColor = box.innerText;
+        }
+    });
+});
+
+forms.forEach((form) => {
+    form.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (
+            e.target.value.length &&
+            e.target.value.match(/^#[a-fA-F0-9]{6}$/)
+        ) {
+            const elem = form.parentElement.children;
+            elem[elem.length - 1].innerText = form.children[0].value;
+            // console.log(typeof e.target.value, e.target.value.length);
+            boxes.forEach((box) => {
+                box.style.backgroundColor = box.innerText;
+            });
+        }
+    });
+});
+
+forms.forEach((form) => {
+    form.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+
+        navigator.clipboard.readText().then((text) => {
+            form.firstElementChild.value = text;
+        });
+    });
+});
