@@ -10,6 +10,7 @@
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
+    /* padding: 0; */
 }
 
 body {
@@ -22,6 +23,30 @@ body {
     gap: 5rem;
 }
 
+/* .control {
+    --circle: 2rem;
+    position: absolute;
+    /* display: block; 
+    width: var(--circle);
+    height: var(--circle);
+    background-color: black;
+    color: black;
+    border-radius: 50%;
+    margin: 1rem;
+    cursor: pointer;
+
+    border: 0px;
+}
+.control:focus + .main,
+.control:focus ~ footer {
+    display: none;
+    visibility: hidden;
+    color: black;
+} */
+
+/* body.control:hover .control {
+    color: black;
+} */
 /* ------- color generator ---------- */
 
 .main {
