@@ -7,9 +7,9 @@ const tooltip = document.querySelector("#tooltip");
 let hexGenerated = false;
 
 container.addEventListener("click", (e) => {
-    console.log(e);
+    // console.log(e);
     if (e.target === generateBtn) {
-        console.log(true);
+        // console.log(true);
         whiteboard.removeChild(whiteboard.firstElementChild);
 
         if (container.lastElementChild.classList[0] == "copied") {
@@ -19,19 +19,21 @@ container.addEventListener("click", (e) => {
         tooltip.classList.remove("before");
         tooltip.classList.add("tooltip");
         tooltip.style.animation = "bounce 1s ease forwards";
+
         setTimeout(() => {
             tooltip.style.animation = "";
             tooltip.classList.add("before");
             tooltip.classList.remove("tooltip");
         }, 1000);
+
         const span = document.createElement("span");
         span.innerText = generate();
         whiteboard.appendChild(span);
         hexGenerated = true;
     }
     if (e.target === whiteboard) {
-        console.log(false);
-        console.log(whiteboard.children);
+        // console.log(false);
+        // console.log(whiteboard.children);
         if (hexGenerated) {
             navigator.clipboard.writeText(e.target.innerText);
 
@@ -66,7 +68,7 @@ const body = document.body;
 
 boxes.forEach((box) => {
     const span = box.lastElementChild;
-    console.log(span.innerText);
+    // console.log(span.innerText);
     box.style.backgroundColor = box.lastElementChild.innerText;
     box.addEventListener("click", (e) => {
         body.style.backgroundColor = box.lastElementChild.innerText;
