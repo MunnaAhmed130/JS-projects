@@ -1,3 +1,5 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap"); */
+
 :root {
     --square: 11rem;
     --generate-radius: 2rem;
@@ -8,12 +10,14 @@
 
 * {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    /* font-family: sans-serif; */
     box-sizing: border-box;
-    /* padding: 0; */
 }
 
 body {
+    position: relative;
     width: 100%;
     height: 100vh;
     background-color: #387e94;
@@ -23,33 +27,23 @@ body {
     gap: 5rem;
 }
 
-/* .control {
-    --circle: 2rem;
+.instruction {
     position: absolute;
-    /* display: block; 
-    width: var(--circle);
-    height: var(--circle);
-    background-color: black;
-    color: black;
+    --size: 25px;
+    width: var(--size);
+    height: var(--size);
     border-radius: 50%;
+    border: none;
+    /* background-color: black; */
+    /* color: white; */
     margin: 1rem;
     cursor: pointer;
-
-    border: 0px;
 }
-.control:focus + .main,
-.control:focus ~ footer {
-    display: none;
-    visibility: hidden;
-    color: black;
-} */
 
-/* body.control:hover .control {
-    color: black;
-} */
 /* ------- color generator ---------- */
 
 .main {
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     margin-top: 10rem;
@@ -63,8 +57,8 @@ body {
     position: relative;
     width: 30rem;
     border-radius: 2rem;
-    box-shadow: 8px 6px 0px 5px rgb(22, 77, 96);
-    overflow: hidden;
+    box-shadow: 8px 6px 0px 6px var(--dark);
+    background-color: var(--dark);
     margin-block: 2rem;
     margin-inline: auto;
 }
@@ -72,6 +66,12 @@ body {
 .whiteboard {
     width: 100%;
     height: 2.5rem;
+    border-radius: 2rem 0 0 2rem;
+
+    /* font-size: 1.1rem; */
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #67729d;
     background-color: white;
     display: flex;
     align-items: center;
@@ -87,25 +87,86 @@ body {
 }
 
 .generator {
-    border: 1px solid var(--generator-border);
+    border-radius: 0 2rem 2rem 0;
+    /* border-radius: 0 1rem 1rem 0; */
+
+    /* border: 0px solid var(--generator-border); */
+    border: none;
     font-size: 1.1rem;
     background-color: rgb(50, 91, 121);
     color: white;
     cursor: pointer;
-    padding-right: 1rem;
+    padding-inline: 1rem;
 }
 
 .copied {
-    /* background-color: black; */
+    background-color: #4b4f52;
     color: white;
-    border-radius: 5px;
-    padding: 0.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-radius: 2rem;
+    padding-block: 7px 5px;
+    padding-inline: 10px 10px;
+    box-shadow: 3px 3px 0px 3px #2e3537;
     transition: 200ms;
     position: absolute;
-    top: 5px;
-    right: 10rem;
+    top: 4px;
+    left: 10rem;
+    /* transition: background-color 400ms; */
+    opacity: 0;
 }
 
+.tooltip {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    /* right: 50%; */
+    /* transform: translate(50%, -50%); */
+    /* bottom: 10%; */
+    background-color: black;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    color: white;
+    z-index: 100;
+    visibility: visible;
+}
+.before {
+    position: absolute;
+    visibility: hidden;
+}
+@keyframes bounce {
+    0% {
+        transform: translateY(0px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+}
+.tooltip::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    height: 20px;
+    width: 20px;
+    --border-color: black;
+    border-right: 10px solid var(--border-color);
+    border-bottom: 10px solid var(--border-color);
+    rotate: 45deg;
+    /* transform: rotate(45deg); */
+    z-index: -1;
+}
+
+/* .generator-container:hover .tooltip {
+    display: block;
+} */
 /* boxes */
 
 .palette-wrapper {
@@ -163,10 +224,17 @@ body {
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    font-weight: 600;
+
+    /* font-weight: 600; */
     border-radius: 40px;
 }
-
+form {
+    position: relative;
+}
+.input-tooltip {
+    position: absolute;
+    /* top: -100%; */
+}
 input {
     width: 100%;
     font-size: 1.2rem;
@@ -189,11 +257,17 @@ input::placeholder {
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2rem;
 }
 
-.box span {
+.box .color-code {
     display: flex;
+    font-weight: 500;
+    color: black;
+    color: #ffffff;
+    /* mix-blend-mode: color-burn; */
+    filter: invert(100%);
     justify-content: center;
     align-items: center;
     letter-spacing: 1px;
@@ -207,8 +281,9 @@ input::placeholder {
 
 /*  footer  */
 
-footer {
+footer p {
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
     padding: 1rem;
+    letter-spacing: 1px;
 }

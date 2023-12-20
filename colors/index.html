@@ -6,71 +6,43 @@
         <link rel="stylesheet" href="style.css" />
         <title>Document</title>
         <script defer src="app.js"></script>
+        <script
+            defer
+            src="https://kit.fontawesome.com/d211c410d8.js"
+            crossorigin="anonymous"
+        ></script>
     </head>
     <body>
-        <!-- <button class="control">Hide</button> -->
+        <!-- <div></div> -->
+        <button class="instruction">
+            <i class="fa-solid fa-circle-question"></i>
+        </button>
         <section class="main">
             <!-- Hex color code generator -->
             <div class="generator-container">
-                <div type="text" class="whiteboard" title="left click to copy">
+                <div type="text" class="whiteboard">
                     <span class="placeholder"
                         >Generate random HEX color code</span
                     >
                 </div>
                 <button class="generator">Generate</button>
+                <span class="before" id="tooltip">click to copy</span>
             </div>
-
             <!-- color boxes -->
             <div class="palette-wrapper">
                 <div class="color-palette">
                     <div class="box-container">
                         <div class="box">
-                            <form>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Hex color code"
-                                    pattern="^#[a-fA-F0-9]{6}$"
-                                    title="right click to paste"
-                                    required
-                                />
-                            </form>
-                            <span>#5F8670</span>
+                            <span class="color-code">#5F8670</span>
                         </div>
                         <div class="box">
-                            <form>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Hex color code"
-                                    pattern="^#[a-fA-F0-9]{6}$"
-                                    title="right click to paste"
-                                    required
-                                />
-                            </form>
-                            <span>#FF9800</span>
+                            <span class="color-code">#FF9800</span>
                         </div>
                         <div class="box">
-                            <form>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Hex color code"
-                                    pattern="^#[a-fA-F0-9]{6}$"
-                                    title="right click to paste"
-                                    required
-                                />
-                            </form>
-                            <span>#E7BCDE</span>
+                            <span class="color-code">#E7BCDE</span>
                         </div>
                         <div class="box">
-                            <form>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Hex color code"
-                                    pattern="^#[a-fA-F0-9]{6}$"
-                                    title="right click to paste"
-                                    required
-                                />
-                            </form>
-                            <span>#67729D</span>
+                            <span class="color-code">#67729D</span>
                         </div>
                     </div>
                 </div>
