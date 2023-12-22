@@ -114,7 +114,7 @@ body {
     gap: clamp(0.5rem, 1.23267vw + 0.211094rem, 1rem);
     padding-inline: 2rem;
 }
-
+/* #11235A */
 h1 {
     /* px-40-80 -- vw-320-1024 */
     font-size: clamp(2.5rem, 5.68182vw + 1.36364rem, 5rem);

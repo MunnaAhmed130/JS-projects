@@ -7,7 +7,7 @@ const tooltip = document.querySelector("#tooltip");
 let hexGenerated = false;
 
 container.addEventListener("click", (e) => {
-    // console.log(e);
+    console.log(e);
     if (e.target === generateBtn) {
         // console.log(true);
         whiteboard.removeChild(whiteboard.firstElementChild);
@@ -31,7 +31,7 @@ container.addEventListener("click", (e) => {
         whiteboard.appendChild(span);
         hexGenerated = true;
     }
-    if (e.target === whiteboard) {
+    if (e.target !== generateBtn) {
         // console.log(false);
         // console.log(whiteboard.children);
         if (hexGenerated) {
